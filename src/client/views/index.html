@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>
+        Evaluate a news article with Aylient Natural Language Processing
+    </title>
+</head>
+
+<body>
+    <header>
+        <div class="project-heading">
+            <h1>Link Checker</h1>
+        </div>
+        <div class="sub-heading">
+            Evaluate a News Article with Natural Language Processing
+        </div>
+    </header>
+
+    <main>
+        <div class="sub-heading">
+            <h5>
+                Type in a "URL" to see what the Aylient NLP understands from it.
+            </h5>
+        </div>
+
+        <section class="errors">
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <div id="error-message"></div>
+        </section>
+
+        <section>
+            <form class="form-container" onsubmit="return Client.handleSubmit(event)">
+                <input id="name" class="input-section" type="url" name="url-testing" value=""
+                    placeholder="Enter the url" />
+                <input type="submit" class="submit-Btn" name="" value="submit"
+                    onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)" />
+            </form>
+        </section>
+
+        <section class="url-results">
+            <ul>
+                <li>
+                    <h3>Text Polarity:</h3>
+                    <p id="polarity"></p>
+                    <h4>Confidence:</h4>
+                    <p id="polarity_confidence"></p>
+                </li>
+
+                <li>
+                    <h3>Text Subjectivity:</h3>
+                    <p id="subjectivity"></p>
+                    <h4>Confidence:</h4>
+                    <p id="subjectivity_confidence"></p>
+                </li>
+
+                <h3>Text Excerpt:</h3>
+                <p id="excerpt"></p>
+            </ul>
+        </section>
+    </main>
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker
+                    .register("/service-worker.js")
+                    .then(registration => {
+                        console.log("SW registered: ", registration);
+                    });
+            });
+        } else {
+            console.log("Service Working not working");
+        }
+    </script>
+</body>
+
+</html>
